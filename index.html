@@ -1,0 +1,162 @@
+<body>
+<p>
+Click the button to generate LL cases for a specific set!
+</p>
+<p>
+Notation: WCA scramble notation
+</p>
+<style>
+.sans-serif {
+ font-family: 'sans-serif', arial, serif;
+}
+</style>
+<p>
+<div id="resultPeSw" style="border: 1px solid black;" class='sans-serif'>
+Peanut + Swirl
+</div>
+<input type=button value="Peanut + Swirl" onClick="change_contentPeSw('resultPeSw')"></input>
+<script>
+function change_contentPeSw(id) {
+ $('#'+id).text(algsPeSw[randomNumberPeSw]);
+randomNumberPeSw = Math.floor(Math.random() *8);
+ }
+ var algsPeSw = ['R L U Li U Li Ri L R', 'Ri Li R L Ui L Ui Li Ri', 'L Ui L B U Ri Bi Li', 'L B R Ui Bi Li U Li', 'Li Bi Ui R B L Ri L', 'Li R Li Bi Ri U B L', 'Ri Li B Ri L Ui Bi R Li', 'L Ri B U Li R Bi L R'];
+var randomNumberPeSw = '2';
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultPiSw1" style="border: 1px solid black;" class="sans-serif">
+Pi + Swirl (1cats)
+</div>
+<input type=button value="Pi + Swirl (1cats)" onClick="change_contentPiSw1('resultPiSw1')"></input>
+<script>
+function change_contentPiSw1(id) {
+ $('#'+id).text(algsPiSw1[randomNumberPiSw1]);
+randomNumberPiSw1 = Math.floor(Math.random() *4);
+ 
+ }
+var algsPiSw1 = ['B Ri Ui Li R Bi L R', 'Li B L B Ri U Li Bi', 'Ri U L B Li U Li Ri', 'B Ui Bi Ui R Bi U R'];
+var randomNumberPiSw1 = '1';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultPiSw3" style="border: 1px solid black;" class="sans-serif">
+Pi + Swirl (3cats)
+</div>
+<input type=button value="Pi + Swirl (3cats)" onClick="change_contentPiSw3('resultPiSw3')"></input>
+
+<script>
+function change_contentPiSw3(id) {
+ $('#'+id).text(algsPiSw3[randomNumberPiSw3]);
+randomNumberPiSw3 = Math.floor(Math.random() *4);
+ 
+ }
+var algsPiSw3 = ['Ri Li B Ri L U R Bi', 'B L Ui R Bi Li Bi L', 'R L Ui L Bi Li Ui R', 'Ri Ui B Ri U B U Bi'];
+var randomNumberPiSw3 = '4';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultPeWa" style="border: 1px solid black;" class="sans-serif">
+Peanut + Wat
+</div>
+<input type=button value="Peanut + Wat" onClick="change_contentPeWa('resultPeWa')"></input>
+
+<script>
+function change_contentPeWa(id) {
+ $('#'+id).text(algsPeWa[randomNumberPeWa]);
+randomNumberPeWa = Math.floor(Math.random() *8);
+ 
+ }
+var algsPeWa = ['L Ui L R L Ui L Ui Li Ri', 'Li Bi Ui R Li B R U Li R', 'R L U Li Bi R B', 'L U Li Bi R B R', 'R Li Bi L Ui R L Ui', 'Ui R U Ri L Bi Ui B', 'Li Bi U L U B L Ri L', 'R L Ui Li Ri Bi Ri B Ri'];
+var randomNumberPeWa = '8';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultPiWa3" style="border: 1px solid black;" class="sans-serif">
+Pi + Wat (3cats)
+</div>
+<input type=button value="Pi + Wat (3cats)" onClick="change_contentPiWa3('resultPiWa3')"></input>
+
+<script>
+function change_contentPiWa3(id) {
+ $('#'+id).text(algsPiWa3[randomNumberPiWa3]);
+randomNumberPiWa3 = Math.floor(Math.random() *4);
+ 
+ }
+var algsPiWa3 = ['Ui Ri L Ri Li Ui Ri Bi', 'Ri Li Ri Bi Ui R Li Ui', 'Li B R Ui Ri B Ui Ri B Li Ui', 'Ri L U Li R L Ui Li Ri Bi R B'];
+var randomNumberPiWa3 = '4';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultL5C" style="border: 1px solid black;" class="sans-serif">
+Last 5 Centers
+</div>
+<input type=button value="Last 5 Centers" onClick="change_contentL5C('resultL5C')"></input>
+
+<script>
+function change_contentL5C(id) {
+ $('#'+id).text(algsL5C[randomNumberL5C]);
+randomNumberL5C = Math.floor(Math.random() *6);
+ 
+ }
+var algsL5C = ['B L Ui R L Bi Ri U Li Ri', 'L Ui R L Bi Ri U Li Ri B', 'Ri L U Li Bi R B R Bi Ri B L Ui Li', 'L U Li Bi R B Ri Bi Ri B L Ui Li R', 'Ri Li B U Bi L R Bi R B Ri Ui', 'U R Bi Ri B Ri Li B Ui Bi L R'];
+var randomNumberL5C = '8';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultOCC" style="border: 1px solid black;" class="sans-serif">
+Other Center Cases
+</div>
+<input type=button value="Other Center Cases" onClick="change_contentOCC('resultOCC')"></input>
+
+<script>
+function change_contentOCC(id) {
+ $('#'+id).text(algsOCC[randomNumberOCC]);
+randomNumberOCC = Math.floor(Math.random() *6);
+ 
+ }
+var algsOCC = ['Li Ui L U L R Li Ri', 'Ri Li Ui L U L R Li', 'R Li Ui L U L R Li R', 'R Li B Ri Ui B Ui B', 'Li U L Bi Li B R Ui', 'U Li U L Bi Li B R U', 'Ui Ri Bi L B Li Ui L Ui', 'Li U L Bi Ui R U Bi Ri L R Bi'];
+var randomNumberOCC = '8';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>
+<div id="resultBC" style="border: 1px solid black;" class="sans-serif">
+Bad Cases
+</div>
+<input type=button value="Bad cases" onClick="change_contentBC('resultBC')"></input>
+
+<script>
+function change_contentBC(id) {
+ $('#'+id).text(algsBC[randomNumberBC]);
+randomNumberBC = Math.floor(Math.random() *8);
+ 
+ }
+var algsBC = ['Ri L U L Bi Ri L R B L Ri', 'R Li Bi Ri Li R B Li Ui Li R', 'R Li Ri B Li Ui L U Bi L', 'Ri Li B Ri B Ui Ri Li Ui B L', 'Ri L U B R B Ui L Ui', 'Ri Li B Ri B U Li U Li Ui B L', 'Ri Li B U R Li Ri Bi L R', 'U L Bi Ui Li U R B Li Ui'];
+var randomNumberBC = '1';
+ 
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+</p>
+<p></p>
+<p>2017, MattheoDW</p>
+</body>
