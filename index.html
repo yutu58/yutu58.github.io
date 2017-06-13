@@ -17,13 +17,13 @@ Peanut + Swirl
 <input type=button value="Peanut + Swirl" onClick="change_contentPeSw('resultPeSw')"></input>
 <script>
 function change_contentPeSw(id) {
- $('#'+id).text(algsPeSw[randomNumberPeSw]);
+document.getElementById(id).innerHTML = algsPeSw[randomNumberPeSw];
 randomNumberPeSw = Math.floor(Math.random() *8);
  }
  var algsPeSw = ['R L U Li U Li Ri L R', 'Ri Li R L Ui L Ui Li Ri', 'L Ui L B U Ri Bi Li', 'L B R Ui Bi Li U Li', 'Li Bi Ui R B L Ri L', 'Li R Li Bi Ri U B L', 'Ri Li B Ri L Ui Bi R Li', 'L Ri B U Li R Bi L R'];
 var randomNumberPeSw = '2';
+var PeSw = algsPeSw[randomNumberPeSw]
 </script>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 </p>
 <p></p>
 <p>
@@ -33,7 +33,7 @@ Pi + Swirl (1cats)
 <input type=button value="Pi + Swirl (1cats)" onClick="change_contentPiSw1('resultPiSw1')"></input>
 <script>
 function change_contentPiSw1(id) {
- $('#'+id).text(algsPiSw1[randomNumberPiSw1]);
+document.getElementById(id).innerHTML = algsPiSw1[randomNumberPiSw1];
 randomNumberPiSw1 = Math.floor(Math.random() *4);
  
  }
@@ -51,7 +51,7 @@ Pi + Swirl (3cats)
 
 <script>
 function change_contentPiSw3(id) {
- $('#'+id).text(algsPiSw3[randomNumberPiSw3]);
+ document.getElementById(id).innerHTML = algsPiSw3[randomNumberPiSw3];
 randomNumberPiSw3 = Math.floor(Math.random() *4);
  
  }
@@ -59,7 +59,6 @@ var algsPiSw3 = ['Ri Li B Ri L U R Bi', 'B L Ui R Bi Li Bi L', 'R L Ui L Bi Li U
 var randomNumberPiSw3 = '4';
  
 </script>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 </p>
 <p></p>
 <p>
@@ -70,7 +69,7 @@ Peanut + Wat
 
 <script>
 function change_contentPeWa(id) {
- $('#'+id).text(algsPeWa[randomNumberPeWa]);
+ document.getElementById(id).innerHTML = algsPeWa[randomNumberPeWa];
 randomNumberPeWa = Math.floor(Math.random() *8);
  
  }
@@ -78,7 +77,6 @@ var algsPeWa = ['L Ui L R L Ui L Ui Li Ri', 'Li Bi Ui R Li B R U Li R', 'R L U L
 var randomNumberPeWa = '8';
  
 </script>
-
 </p>
 <p></p>
 <p>
@@ -89,7 +87,7 @@ Pi + Wat (3cats)
 
 <script>
 function change_contentPiWa3(id) {
- $('#'+id).text(algsPiWa3[randomNumberPiWa3]);
+ document.getElementById(id).innerHTML = algsPiWa3[randomNumberPiWa3];
 randomNumberPiWa3 = Math.floor(Math.random() *4);
  
  }
@@ -97,7 +95,6 @@ var algsPiWa3 = ['Ui Ri L Ri Li Ui Ri Bi', 'Ri Li Ri Bi Ui R Li Ui', 'Li B R Ui 
 var randomNumberPiWa3 = '4';
  
 </script>
-
 </p>
 <p></p>
 <p>
@@ -108,7 +105,7 @@ Last 5 Centers
 
 <script>
 function change_contentL5C(id) {
- $('#'+id).text(algsL5C[randomNumberL5C]);
+document.getElementById(id).innerHTML = algsL5C[randomNumberL5C];
 randomNumberL5C = Math.floor(Math.random() *6);
  
  }
@@ -116,7 +113,6 @@ var algsL5C = ['B L Ui R L Bi Ri U Li Ri', 'L Ui R L Bi Ri U Li Ri B', 'Ri L U L
 var randomNumberL5C = '8';
  
 </script>
-
 </p>
 <p></p>
 <p>
@@ -127,7 +123,7 @@ Other Center Cases
 
 <script>
 function change_contentOCC(id) {
- $('#'+id).text(algsOCC[randomNumberOCC]);
+document.getElementById(id).innerHTML = algsOCC[randomNumberOCC];
 randomNumberOCC = Math.floor(Math.random() *6);
  
  }
@@ -135,6 +131,7 @@ var algsOCC = ['Li Ui L U L R Li Ri', 'Ri Li Ui L U L R Li', 'R Li Ui L U L R Li
 var randomNumberOCC = '8';
  
 </script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 </p>
 <p></p>
 <p>
@@ -145,7 +142,7 @@ Bad Cases
 
 <script>
 function change_contentBC(id) {
- $('#'+id).text(algsBC[randomNumberBC]);
+document.getElementById(id).innerHTML = algsBC[randomNumberBC];
 randomNumberBC = Math.floor(Math.random() *8);
  
  }
@@ -153,6 +150,7 @@ var algsBC = ['Ri L U L Bi Ri L R B L Ri', 'R Li Bi Ri Li R B Li Ui Li R', 'R Li
 var randomNumberBC = '1';
  
 </script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 </p>
 <p></p>
 <p>2017, MattheoDW</p>
