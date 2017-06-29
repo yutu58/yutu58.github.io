@@ -23,10 +23,9 @@
 				text-align: center;
 				border: 1px solid #ccc;
 				background-color: rgba(255,255,255,0.5);
-
 			}
 			input {
-				width: 100%;
+				width: 75%;
 				height: 30px;
 				margin: 5px 0px 15px 0px;
 			}
@@ -43,18 +42,56 @@
 			.box {
            			text-align: center; 
       			}
+                
+            .checkboxFalse {
+            		text-allign: center;
+                    color: red;
+                }    
+                
+            .checkboxTrue { 
+            		text-allign: center;
+                    color: green;
+				}
 		</style>
 	</head>
 	<body>
 		<div class="container">
-			<h3>Click the button to generate LL cases for a specific set!</h3>
+			<h3>Click the button to generate LL cases for a your selected sets!</h3>
 			<h3>Notation: WCA scramble notation</h3>
-
-			<div class="box">
+		</div>
+		
+        <div class="box" "sans-serif" id="scramble">
+        </div>
+	
+			<div class="box" "sans-serif">
 	<h1 id="timerLabel">00:00:00</h1>
     <input hidden type="button" onclick="start()" id="startBtn">
-
-</div>
+    		</div>
+            
+         <div class="box">
+	<input type = "button" onclick="PeSw()" id="checkPeSw" value="Peanut + Swirl" class="checkboxFalse">
+		 </div>
+         <div class ="box">
+	<input type = "button" onclick="PiSw1()" id="checkPiSw1" value="Pi + Swirl (1cats)" class="checkboxFalse">
+    	 </div>
+         <div class ="box">
+    <input type = "button" onclick="PiSw3()" id="checkPiSw3" value="Pi + Swirl (3cats)" class="checkboxFalse">
+    	</div>
+		<div class ="box">
+    <input type = "button" onclick="PeWa()" id="checkPeWa" value="Peanut + Wat" class = "checkboxFalse">
+    	</div>
+      	<div class ="box">
+    <input type = "button" onclick="PiWa3()" id="checkPiWa3" value="Pi + Wat (3cats)" class = "checkboxFalse">
+    	</div>
+        <div class ="box">
+    <input type = "button" onclick="L5C()" id="checkL5C" value="Last 5 Centers" class = "checkboxFalse">
+    	</div>
+        <div class ="box">
+    <input type = "button" onclick="OCC()" id="checkOCC" value="Other Center Cases" class = "checkboxFalse">
+    	</div>
+        <div class ="box">
+    <input type = "button" onclick="BC()" id="checkBC" value="Bad Cases" class = "checkboxFalse">
+    	</div>
 <script>
     var status = 0; 
     var time = 0;
@@ -100,11 +137,13 @@
             }, 10);
         }
     }
-    document.onkeydown = function(event) { 
+    
+    document.onkeyup = function(event) { 
         if (event) {
-            if (event.keyCode == 32 || event.which == 32) {
+            if (event.keyCode == 32) {
                 if(status == 1) {
                     stop();
+                    generate();
                 } else if (status == 0) {
                 	reset();
                     start();
@@ -112,133 +151,191 @@
             }
         } 
     };
+    
+    
+var NoTotalAlgs = 48;    
+
+   
+var algsPeSw = ['R L U L\' U L\' R\' L R', 'R\' L\' R L U\' L U\' L\' R\'', 'L U\' L B U R\' B\' L\'', 'L B R U\' B\' L\' U L\'', 'L\' B\' U\' R B L R\' L', 'L\' R L\' B\' R\' U B L', 'R\' L\' B R\' L U\' B\' R L\'', 'L R\' B U L\' R B\' L R'];
+var NoAlgsPeSw = 8; 
+var NPeSw = 0;
+
+var algsPiSw1 = ['B R\' U\' L\' R B\' L R', 'L\' B L B R\' U L\' B\'', 'R\' U L B L\' U L\' R\'', 'B U\' B\' U\' R B\' U R'];
+var NoAlgsPiSw1 = 4;
+var NPiSw1 = 0;
+
+var algsPiSw3 = ['R\' L\' B R\' L U R B\'', 'B L U\' R B\' L\' B\' L', 'R L U\' L B\' L\' U\' R', 'R\' U\' B R\' U B U B\''];
+var NoAlgsPiSw3 = 4;
+var NPiSw3 = 0;
+
+var algsPeWa = ['L U\' L R L U\' L U\' L\' R\'', 'L\' B\' U\' R L\' B R U L\' R', 'R L U L\' B\' R B', 'L U L\' B\' R B R', 'R L\' B\' L U\' R L Ui', 'U\' R U R\' L B\' U\' B', 'L\' B\' U L U B L R\' L', 'R L U\' L\' R\' B\' R\' B R\''];
+var NoAlgsPeWa = 8;
+var NPeWa = 0;
+
+var algsPiWa3 = ['U\' R\' L R\' L\' U\' R\' B\'', 'R\' L\' R\' B\' U\' R L\' Ui', 'L\' B R U\' R\' B U\' R\' B L\' Ui', 'R\' L U L\' R L U\' L\' R\' B\' R B'];
+var NoAlgsPiWa3 = 4;
+var NPiWa3 = 0;
+
+var algsL5C = ['B L U\' R L B\' R\' U L\' R\'', 'L U\' R L B\' R\' U L\' R\' B', 'R\' L U L\' B\' R B R B\' R\' B L U\' L\'', 'L U L\' B\' R B R\' B\' R\' B L U\' L\' R', 'R\' L\' B U B\' L R B\' R B R\' Ui', 'U R B\' R\' B R\' L\' B U\' B\' L R'];
+var NoAlgsL5C = 6;
+var NL5C = 0;
+
+var algsOCC = ['L\' U\' L U L R L\' R\'', 'R\' L\' U\' L U L R L\'', 'R L\' U\' L U L R L\' R', 'R L\' B R\' U\' B U\' B', 'L\' U L B\' L\' B R Ui', 'U L\' U L B\' L\' B R U', 'U\' R\' B\' L B L\' U\' L Ui', 'L\' U L B\' U\' R U B\' R\' L R B\''];
+var NoAlgsOCC = 6;
+var NOCC = 0;
+
+var algsBC = ['R\' L U L B\' R\' L R B L R\'', 'R L\' B\' R\' L\' R B L\' U\' L\' R', 'R L\' R\' B L\' U\' L U B\' L', 'R\' L\' B R\' B U\' R\' L\' U\' B L', 'R\' L U B R B U\' L Ui', 'R\' L\' B R\' B U L\' U L\' U\' B L', 'R\' L\' B U R L\' R\' B\' L R', 'U L B\' U\' L\' U R B L\' Ui'];
+var NoAlgsBC = 8;
+var NBC = 0;
+
+function PeSw() {
+NPeSw += 1;
+if (NPeSw > 1) {
+NPeSw = 0;
+}
+if (NPeSw == 1) {
+document.getElementById("checkPeSw").setAttribute('class', 'checkboxTrue')
+} else if (NPeSw == 0) {
+document.getElementById("checkPeSw").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function PiSw1() {
+NPiSw1 += 1;
+if (NPiSw1 > 1) {
+NPiSw1 = 0;
+}
+if (NPiSw1 == 1) {
+document.getElementById("checkPiSw1").setAttribute('class', 'checkboxTrue')
+} else if (NPiSw1 == 0) {
+document.getElementById("checkPiSw1").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function PiSw3() {
+NPiSw3 += 1;
+if (NPiSw3 > 1) {
+NPiSw3 = 0;
+}
+if (NPiSw3 == 1) {
+document.getElementById("checkPiSw3").setAttribute('class', 'checkboxTrue')
+} else if (NPiSw3 == 0) {
+document.getElementById("checkPiSw3").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function PeWa() {
+NPeWa += 1;
+if (NPeWa > 1) {
+NPeWa = 0;
+}
+if (NPeWa == 1) {
+document.getElementById("checkPeWa").setAttribute('class', 'checkboxTrue')
+} else if (NPeWa == 0) {
+document.getElementById("checkPeWa").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function PiWa3() {
+NPiWa3 += 1;
+if (NPiWa3 > 1) {
+NPiWa3 = 0;
+}
+if (NPiWa3 == 1) {
+document.getElementById("checkPiWa3").setAttribute('class', 'checkboxTrue')
+} else if (NPiWa3 == 0) {
+document.getElementById("checkPiWa3").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function L5C() {
+NL5C += 1;
+if (NL5C > 1) {
+NL5C = 0;
+}
+if (NL5C == 1) {
+document.getElementById("checkL5C").setAttribute('class', 'checkboxTrue')
+} else if (NL5C == 0) {
+document.getElementById("checkL5C").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function OCC() {
+NOCC += 1;
+if (NOCC > 1) {
+NOCC = 0;
+}
+if (NOCC == 1) {
+document.getElementById("checkOCC").setAttribute('class', 'checkboxTrue')
+} else if (NOCC == 0) {
+document.getElementById("checkOCC").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function BC() {
+NBC += 1;
+if (NBC > 1) {
+NBC = 0;
+}
+if (NBC == 1) {
+document.getElementById("checkBC").setAttribute('class', 'checkboxTrue')
+} else if (NBC == 0) {
+document.getElementById("checkBC").setAttribute('class', 'checkboxFalse')
+}
+}
+
+function generate() {
+		var randomNumber = Math.floor(Math.random() *NoTotalAlgs)
+        
+		if (randomNumber < 8 && NPeSw == 1) {
+   		var randomNumberPeSw = Math.floor(Math.random() *NoAlgsPeSw);
+        document.getElementById("scramble").innerHTML = algsPeSw[randomNumberPeSw];
+        }
+        
+        else if (randomNumber >= 8 && randomNumber < 12 && NPiSw1 == 1) {
+        var randomNumberPiSw1 = Math.floor(Math.random() *NoAlgsPiSw1);
+        document.getElementById("scramble").innerHTML = algsPiSw1[randomNumberPiSw1];
+        }
+        
+        else if (randomNumber >= 12 && randomNumber < 16 && NPiSw3 == 1) {
+        var randomNumberPiSw3 = Math.floor(Math.random() *NoAlgsPiSw3);
+        document.getElementById("scramble").innerHTML = algsPiSw3[randomNumberPiSw3];
+        }
+        
+        else if (randomNumber >= 16 && randomNumber < 24 && NPeWa == 1) {
+        var randomNumberPeWa = Math.floor(Math.random() *NoAlgsPeWa);
+        document.getElementById("scramble").innerHTML = algsPeWa[randomNumberPeWa];
+        }
+        
+        else if (randomNumber >= 24 && randomNumber < 28 && NPiWa3 == 1) {
+        var randomNumberPiWa3 = Math.floor(Math.random() *NoAlgsPiWa3);
+        document.getElementById("scramble").innerHTML = algsPiWa3[randomNumberPiWa3];
+        }
+        
+        else if (randomNumber >= 28 && randomNumber < 34 && NL5C == 1) {
+        var randomNumberL5C = Math.floor(Math.random() *NoAlgsL5C);
+        document.getElementById("scramble").innerHTML = algsL5C[randomNumberL5C];
+        }
+        
+        else if (randomNumber >= 34 && randomNumber < 40 && NOCC == 1) {
+        var randomNumberOCC = Math.floor(Math.random() *NoAlgsOCC);
+        document.getElementById("scramble").innerHTML = algsOCC[randomNumberOCC];
+        }
+        
+        else if (randomNumber >= 40 && randomNumber < 48 && NBC == 1) {
+        var randomNumberBC = Math.floor(Math.random() *NoAlgsBC);
+        document.getElementById("scramble").innerHTML = algsBC[randomNumberBC];
+        }
+        
+        else if (NPeSw == 0 && NPiSw1 == 0 && NPiSw3 == 0 && NPeWa == 0 && NPiWa3 == 0 && NL5C == 0 && NOCC == 0 && NBC == 0) {
+        document.getElementById("scramble").innerHTML = 'select a set';
+        }
+        
+        else {
+        generate()
+        }
+        
+        }
+  
 </script>
-			<div id="resultPeSw" class="sans-serif titel">
-				Peanut + Swirl
-			</div>
-			<input type="button" value="Peanut + Swirl" onclick="change_contentPeSw(&#39;resultPeSw&#39;)">
-			<script>
-				function change_contentPeSw(id) {
-				document.getElementById(id).innerHTML = algsPeSw[randomNumberPeSw];
-				randomNumberPeSw = Math.floor(Math.random() *8);
-				 }
-				 var algsPeSw = ['R L U L\' U L\' R\' L R', 'R\' L\' R L U\' L U\' L\' R\'', 'L U\' L B U R\' B\' L\'', 'L B R U\' B\' L\' U L\'', 'L\' B\' U\' R B L R\' L', 'L\' R L\' B\' R\' U B L', 'R\' L\' B R\' L U\' B\' R L\'', 'L R\' B U L\' R B\' L R'];
-				var randomNumberPeSw = '1';
-			</script>
-		
-			<div id="resultPiSw1" class="sans-serif titel">
-				Pi + Swirl (1cats)
-			</div>
-			<input type="button" value="Pi + Swirl (1cats)" onclick="change_contentPiSw1(&#39;resultPiSw1&#39;)">
-		
-			<script>
-				function change_contentPiSw1(id) {
-				document.getElementById(id).innerHTML = algsPiSw1[randomNumberPiSw1];
-				randomNumberPiSw1 = Math.floor(Math.random() *4);
-				 
-				 }
-				var algsPiSw1 = ['B R\' U\' L\' R B\' L R', 'L\' B L B R\' U L\' B\'', 'R\' U L B L\' U L\' R\'', 'B U\' B\' U\' R B\' U R'];
-				var randomNumberPiSw1 = '1';
-			</script>
-			
-			<div id="resultPiSw3" class="sans-serif titel">
-				Pi + Swirl (3cats)
-			</div>
-			<input type="button" value="Pi + Swirl (3cats)" onclick="change_contentPiSw3(&#39;resultPiSw3&#39;)">
 
-			<script>
-				function change_contentPiSw3(id) {
-				 document.getElementById(id).innerHTML = algsPiSw3[randomNumberPiSw3];
-				randomNumberPiSw3 = Math.floor(Math.random() *4);
-				 
-				 }
-				var algsPiSw3 = ['R\' L\' B R\' L U R B\'', 'B L U\' R B\' L\' B\' L', 'R L U\' L B\' L\' U\' R', 'R\' U\' B R\' U B U B\''];
-				var randomNumberPiSw3 = '1';
-			</script>
-
-			<div id="resultPeWa" class="sans-serif titel">
-				Peanut + Wat
-			</div>
-			<input type="button" value="Peanut + Wat" onclick="change_contentPeWa(&#39;resultPeWa&#39;)">
-
-			<script>
-				function change_contentPeWa(id) {
-				 document.getElementById(id).innerHTML = algsPeWa[randomNumberPeWa];
-				randomNumberPeWa = Math.floor(Math.random() *8);
-				 
-				 }
-				var algsPeWa = ['L U\' L R L U\' L U\' L\' R\'', 'L\' B\' U\' R L\' B R U L\' R', 'R L U L\' B\' R B', 'L U L\' B\' R B R', 'R L\' B\' L U\' R L Ui', 'U\' R U R\' L B\' U\' B', 'L\' B\' U L U B L R\' L', 'R L U\' L\' R\' B\' R\' B R\''];
-				var randomNumberPeWa = '1';
-			</script>
-
-			<div id="resultPiWa3" class="sans-serif titel">
-			Pi + Wat (3cats)
-			</div>
-			<input type="button" value="Pi + Wat (3cats)" onclick="change_contentPiWa3(&#39;resultPiWa3&#39;)">
-
-			<script>
-				function change_contentPiWa3(id) {
-				 document.getElementById(id).innerHTML = algsPiWa3[randomNumberPiWa3];
-				randomNumberPiWa3 = Math.floor(Math.random() *4);
-				 
-				 }
-				var algsPiWa3 = ['U\' R\' L R\' L\' U\' R\' B\'', 'R\' L\' R\' B\' U\' R L\' Ui', 'L\' B R U\' R\' B U\' R\' B L\' Ui', 'R\' L U L\' R L U\' L\' R\' B\' R B'];
-				var randomNumberPiWa3 = '1';
-				 
-			</script>
-
-			<div id="resultL5C" class="sans-serif titel">
-				Last 5 Centers
-			</div>
-			<input type="button" value="Last 5 Centers" onclick="change_contentL5C(&#39;resultL5C&#39;)">
-
-			<script>
-				function change_contentL5C(id) {
-				document.getElementById(id).innerHTML = algsL5C[randomNumberL5C];
-				randomNumberL5C = Math.floor(Math.random() *6);
-				 
-				 }
-				var algsL5C = ['B L U\' R L B\' R\' U L\' R\'', 'L U\' R L B\' R\' U L\' R\' B', 'R\' L U L\' B\' R B R B\' R\' B L U\' L\'', 'L U L\' B\' R B R\' B\' R\' B L U\' L\' R', 'R\' L\' B U B\' L R B\' R B R\' Ui', 'U R B\' R\' B R\' L\' B U\' B\' L R'];
-				var randomNumberL5C = '1';
-			 
-			</script>
-
-			<div id="resultOCC" class="sans-serif titel">
-			Other Center Cases
-			</div>
-			<input type="button" value="Other Center Cases" onclick="change_contentOCC(&#39;resultOCC&#39;)">
-
-			<script>
-			function change_contentOCC(id) {
-			document.getElementById(id).innerHTML = algsOCC[randomNumberOCC];
-			randomNumberOCC = Math.floor(Math.random() *6);
-			 
-			 }
-			var algsOCC = ['L\' U\' L U L R L\' R\'', 'R\' L\' U\' L U L R L\'', 'R L\' U\' L U L R L\' R', 'R L\' B R\' U\' B U\' B', 'L\' U L B\' L\' B R Ui', 'U L\' U L B\' L\' B R U', 'U\' R\' B\' L B L\' U\' L Ui', 'L\' U L B\' U\' R U B\' R\' L R B\''];
-			var randomNumberOCC = '1';
-			 
-			</script>
-
-			<div id="resultBC" class="sans-serif titel">
-			Bad Cases
-			</div>
-
-			<input type="button" value="Bad cases" onclick="change_contentBC(&#39;resultBC&#39;)">
-
-			<script>
-			function change_contentBC(id) {
-			document.getElementById(id).innerHTML = algsBC[randomNumberBC];
-			randomNumberBC = Math.floor(Math.random() *8);
-			 
-			 }
-			var algsBC = ['R\' L U L B\' R\' L R B L R\'', 'R L\' B\' R\' L\' R B L\' U\' L\' R', 'R L\' R\' B L\' U\' L U B\' L', 'R\' L\' B R\' B U\' R\' L\' U\' B L', 'R\' L U B R B U\' L Ui', 'R\' L\' B R\' B U L\' U L\' U\' B L', 'R\' L\' B U R L\' R\' B\' L R', 'U L B\' U\' L\' U R B L\' Ui'];
-			var randomNumberBC = '1';
-			 
-			</script>
-
-			<div class="footer">
-				<p>2017, MattheoDW</p>
-			</div>
-		</div>
-	</body>
-</html>
