@@ -86,6 +86,9 @@
       	<div class ="box">
     <input type = "button" onclick="PiWa3()" id="checkPiWa3" value="Pi + Wat (3cats)" class = "checkboxFalse">
     	</div>
+        <div class = "box">
+        <input type = "button" onclick="PiX3()" id="checkPiX3" value="Pi + X (3cats)" class = "checkboxFalse">
+        </div>
         <div class ="box">
     <input type = "button" onclick="L5C()" id="checkL5C" value="Last 5 Centers" class = "checkboxFalse">
     	</div>
@@ -160,7 +163,7 @@
     };
     
     
-var NoTotalAlgs = 48;    
+var NoTotalAlgs = 52;    
 
    
 var algsPeSw = ['R L U L\' U L\' R\' L R', 'R\' L\' R L U\' L U\' L\' R\'', 'L U\' L B U R\' B\' L\'', 'L B R U\' B\' L\' U L\'', 'L\' B\' U\' R B L R\' L', 'L\' R L\' B\' R\' U B L', 'R\' L\' B R\' L U\' B\' R L\'', 'L R\' B U L\' R B\' L R'];
@@ -175,23 +178,27 @@ var algsPiSw3 = ['R\' L\' B R\' L U R B\'', 'B L U\' R B\' L\' B\' L', 'R L U\' 
 var NoAlgsPiSw3 = 4;
 var NPiSw3 = 0;
 
-var algsPeWa = ['L U\' L R L U\' L U\' L\' R\'', 'L\' B\' U\' R L\' B R U L\' R', 'R L U L\' B\' R B', 'L U L\' B\' R B R', 'R L\' B\' L U\' R L U\'', 'U\' R U R\' L B\' U\' B', 'L\' B\' U L U B L R\' L', 'R L U\' L\' R\' B\' R\' B R\''];
+var algsPeWa = ['L U\' L R L U\' L U\' L\' R\'', 'L\' B\' U\' R L\' B R U L\' R', 'R L U L\' B\' R B', 'L U L\' B\' R B R', 'R L\' B\' L U\' R L Ui', 'U\' R U R\' L B\' U\' B', 'L\' B\' U L U B L R\' L', 'R L U\' L\' R\' B\' R\' B R\''];
 var NoAlgsPeWa = 8;
 var NPeWa = 0;
 
-var algsPiWa3 = ['U\' R\' L R\' L\' U\' R\' B\'', 'R\' L\' R\' B\' U\' R L\' U\'', 'L\' B R U\' R\' B U\' R\' B L\' U\'', 'R\' L U L\' R L U\' L\' R\' B\' R B'];
+var algsPiWa3 = ['U\' R\' L R\' L\' U\' R\' B\'', 'R\' L\' R\' B\' U\' R L\' Ui', 'L\' B R U\' R\' B U\' R\' B L\' Ui', 'R\' L U L\' R L U\' L\' R\' B\' R B'];
 var NoAlgsPiWa3 = 4;
 var NPiWa3 = 0;
 
-var algsL5C = ['B L U\' R L B\' R\' U L\' R\'', 'L U\' R L B\' R\' U L\' R\' B', 'R\' L U L\' B\' R B R B\' R\' B L U\' L\'', 'L U L\' B\' R B R\' B\' R\' B L U\' L\' R', 'R\' L\' B U B\' L R B\' R B R\' U\'', 'U R B\' R\' B R\' L\' B U\' B\' L R'];
+var algsPiX3 = ['L\' B R\' L\' U\' B\' R L\' R', 'R\' L R\' L\' R B\' U\' L U\'', 'B L U\' L\' R B U\' B U', 'U\' R\' L U L\' U\' B U\' B\''];
+var NoAlgsPiX3 = 4;
+var NPiX3 = 0;
+
+var algsL5C = ['B L U\' R L B\' R\' U L\' R\'', 'L U\' R L B\' R\' U L\' R\' B', 'R\' L U L\' B\' R B R B\' R\' B L U\' L\'', 'L U L\' B\' R B R\' B\' R\' B L U\' L\' R', 'R\' L\' B U B\' L R B\' R B R\' Ui', 'U R B\' R\' B R\' L\' B U\' B\' L R'];
 var NoAlgsL5C = 6;
 var NL5C = 0;
 
-var algsOCC = ['L\' U\' L U L R L\' R\'', 'R\' L\' U\' L U L R L\'', 'R L\' U\' L U L R L\' R', 'R L\' B R\' U\' B U\' B', 'L\' U L B\' L\' B R U\'', 'U L\' U L B\' L\' B R U', 'U\' R\' B\' L B L\' U\' L U\'', 'L\' U L B\' U\' R U B\' R\' L R B\''];
+var algsOCC = ['L\' U\' L U L R L\' R\'', 'R\' L\' U\' L U L R L\'', 'R L\' U\' L U L R L\' R', 'R L\' B R\' U\' B U\' B', 'L\' U L B\' L\' B R Ui', 'U L\' U L B\' L\' B R U', 'U\' R\' B\' L B L\' U\' L Ui', 'L\' U L B\' U\' R U B\' R\' L R B\''];
 var NoAlgsOCC = 6;
 var NOCC = 0;
 
-var algsBC = ['R\' L U L B\' R\' L R B L R\'', 'R L\' B\' R\' L\' R B L\' U\' L\' R', 'R L\' R\' B L\' U\' L U B\' L', 'R\' L\' B R\' B U\' R\' L\' U\' B L', 'R\' L U B R B U\' L U\'', 'R\' L\' B R\' B U L\' U L\' U\' B L', 'R\' L\' B U R L\' R\' B\' L R', 'U L B\' U\' L\' U R B L\' U\''];
+var algsBC = ['R\' L U L B\' R\' L R B L R\'', 'R L\' B\' R\' L\' R B L\' U\' L\' R', 'R L\' R\' B L\' U\' L U B\' L', 'R\' L\' B R\' B U\' R\' L\' U\' B L', 'R\' L U B R B U\' L Ui', 'R\' L\' B R\' B U L\' U L\' U\' B L', 'R\' L\' B U R L\' R\' B\' L R', 'U L B\' U\' L\' U R B L\' Ui'];
 var NoAlgsBC = 8;
 var NBC = 0;
 
@@ -254,6 +261,19 @@ document.getElementById("checkPiWa3").setAttribute('class', 'checkboxTrue')
 document.getElementById("checkPiWa3").setAttribute('class', 'checkboxFalse')
 }
 }
+
+function PiX3() {
+NPiX3 += 1;
+if (NPiX3 > 1) {
+NPiX3 = 0;
+}
+if (NPiX3 == 1) {
+document.getElementById("checkPiX3").setAttribute('class', 'checkboxTrue')
+} else if (NPiX3 == 0) {
+document.getElementById("checkPiX3").setAttribute('class', 'checkboxFalse')
+}
+}
+
 
 function L5C() {
 NL5C += 1;
@@ -319,22 +339,27 @@ function generate() {
         document.getElementById("scramble").innerHTML = algsPiWa3[randomNumberPiWa3];
         }
         
-        else if (randomNumber >= 28 && randomNumber < 34 && NL5C == 1) {
+        else if (randomNumber >=28 && randomNumber < 34 && NPiX3 == 1) {
+        var randomNumberPiX3 = Math.floor(Math.random() * NoAlgsPiX3);
+        document.getElementById("scramble").innerHTML = algsPiX3[randomNumberPiX3];
+        }
+        
+        else if (randomNumber >= 34 && randomNumber < 38 && NL5C == 1) {
         var randomNumberL5C = Math.floor(Math.random() *NoAlgsL5C);
         document.getElementById("scramble").innerHTML = algsL5C[randomNumberL5C];
         }
         
-        else if (randomNumber >= 34 && randomNumber < 40 && NOCC == 1) {
+        else if (randomNumber >= 38 && randomNumber < 44 && NOCC == 1) {
         var randomNumberOCC = Math.floor(Math.random() *NoAlgsOCC);
         document.getElementById("scramble").innerHTML = algsOCC[randomNumberOCC];
         }
         
-        else if (randomNumber >= 40 && randomNumber < 48 && NBC == 1) {
+        else if (randomNumber >= 44 && randomNumber < 52 && NBC == 1) {
         var randomNumberBC = Math.floor(Math.random() *NoAlgsBC);
         document.getElementById("scramble").innerHTML = algsBC[randomNumberBC];
         }
         
-        else if (NPeSw == 0 && NPiSw1 == 0 && NPiSw3 == 0 && NPeWa == 0 && NPiWa3 == 0 && NL5C == 0 && NOCC == 0 && NBC == 0) {
+        else if (NPeSw == 0 && NPiSw1 == 0 && NPiSw3 == 0 && NPeWa == 0 && NPiWa3 == 0 && NPiX3 == 0 && NL5C == 0 && NOCC == 0 && NBC == 0) {
         document.getElementById("scramble").innerHTML = 'select a set';
         }
         
