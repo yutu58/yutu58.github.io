@@ -29,6 +29,19 @@
 				height: 30px;
 				margin: 5px 0px 15px 0px;
 			}
+            
+            input.switchType {
+           		width: 50%;
+				height: 30px;
+				margin: 5px 0px 15px 0px;
+			}
+            
+            input.help {
+            	width: 5%;
+				height: 30px;
+				margin: 5px 0px 15px 0px;
+			}
+            
 			.footer {
             	position: aboslute;
                 bottom: 0px;
@@ -47,22 +60,33 @@
       			}
                 
             .checkboxFalse {
-            		text-allign: center;
+            		text-align: center;
                     color: red;
                 }    
                 
             .checkboxTrue { 
-            		text-allign: center;
+            		text-align: center;
                     color: green;
+				}
+                
+			.type {
+            		text-align: center;
+                    vertical-align: middle;
+                    width: 100%
 				}
 		</style>
 	</head>
-	<body onload="generate()">
+	<body onload="generateByCase()">
 		<div class="container">
 			<h3>Press Space generate LL cases for a your selected sets!</h3>
 			<h3>Notation: WCA scramble notation</h3>
 		</div>
-		
+        
+		<div class="type">
+        <input type = "button" onclick="switchType()" id="switchScrambleType" value="Generate by case*" class="switchType">
+        <input type = "button" onclick="alert('\'Generate by case\' will give every case an equal chance of being generated\n\'Generate by set\' will give every set you selected an equal chance.')" id="help" value="?" class="help">
+        </div>
+        
         <div class="box" "sans-serif" id="scramble">
         </div>
 	
@@ -171,9 +195,12 @@
     document.onkeydown = function(event) { 
         if (event) {
             if (event.keyCode == 32) {
-                if(status == 1) {
+                if(status == 1 && typeSwitch == 0) {
                     stop();
-                    generate();
+                    generateByCase();
+                } else if(status == 1 && typeSwitch == 1) {
+                    stop();
+                    generateBySet();
                 }
  				if (timertrue == 0) {
                 timertrue = 1;
@@ -185,14 +212,25 @@
         } 
     };
     
+var typeSwitch = 0
+
+function switchType(){
+if (typeSwitch == 0) {
+typeSwitch = 1
+document.getElementById("switchScrambleType").setAttribute('value', 'Generate by Set*')
+} else if (typeSwitch == 1) {
+typeSwitch = 0
+document.getElementById("switchScrambleType").setAttribute('value', 'Generate by Case*')
+}
+}
+    
     
 var NoTotalAlgs = 64;    
- 
+var NoTotalSets = 10; 
    
 var algsPeSw = ['R L U L\' U L\' R\' L R', 'R\' L\' R L U\' L U\' L\' R\'', 'L U\' L B U R\' B\' L\'', 'L B R U\' B\' L\' U L\'', 'L\' B\' U\' R B L R\' L', 'L\' R L\' B\' R\' U B L', 'R\' L\' B R\' L U\' B\' R L\'', 'L R\' B U L\' R B\' L R'];
 var NoAlgsPeSw = 8; 
 var NPeSw = 0;
-
 var algsPeWa = ['L U\' L R L U\' L U\' L\' R\'', 'L\' B\' U\' R L\' B R U L\' R', 'R L U L\' B\' R B', 'L U L\' B\' R B R', 'R L\' B\' L U\' R L U\'', 'U\' R U R\' L B\' U\' B', 'L\' B\' U L U B L R\' L', 'R L U\' L\' R\' B\' R\' B R\''];
 var NoAlgsPeWa = 8;
 var NPeWa = 0;
@@ -216,7 +254,6 @@ var NPiX3 = 0;
 var algsPiU = ['U B\' L R\' L\' B U B\'', 'B U\' B\' L R L\' B U\'', 'L\' U B\' R U R\' L\' B', 'B\' L R U\' R\' B U\' L', 'L\' B R\' B L U\' B U\'', 'U B\' U L\' B\' R B\' L', 'U L\' R B\' U\' R B L\'', 'L B\' R\' U B R\' L U\'', 'U B\' L R U L\' R\' L U\' L\'', 'L\' U\' B U\' L R L R\' L\' R', 'R\' L U L\' B U\' B\' U', 'L U\' L\' R U\' B U B\'']; 
 var NoAlgsPiU = 12;
 var NPiU = 0;
-
 var algsL5C = ['B L U\' R L B\' R\' U L\' R\'', 'L U\' R L B\' R\' U L\' R\' B', 'R\' L U L\' B\' R B R B\' R\' B L U\' L\'', 'L U L\' B\' R B R\' B\' R\' B L U\' L\' R', 'R\' L\' B U B\' L R B\' R B R\' U\'', 'U R B\' R\' B R\' L\' B U\' B\' L R'];
 var NoAlgsL5C = 6;
 var NL5C = 0;
@@ -276,7 +313,6 @@ document.getElementById("checkPiSw3").setAttribute('class', 'checkboxTrue')
 document.getElementById("checkPiSw3").setAttribute('class', 'checkboxFalse')
 }
 }
-
  
 function PiWa3() {
 NPiWa3 += 1;
@@ -349,56 +385,56 @@ document.getElementById("checkBC").setAttribute('class', 'checkboxTrue')
 document.getElementById("checkBC").setAttribute('class', 'checkboxFalse')
 }
 }
- 
-function generate() {
-		var randomNumber = Math.floor(Math.random() *NoTotalAlgs)
+
+function generateByCase() {
+		var randomNumberByCase = Math.floor(Math.random() *NoTotalAlgs)
         
-		if (randomNumber < 8 && NPeSw == 1) {
+		if (randomNumberByCase < 8 && NPeSw == 1) {
    		var randomNumberPeSw = Math.floor(Math.random() *NoAlgsPeSw);
         document.getElementById("scramble").innerHTML = algsPeSw[randomNumberPeSw];
         }
         
-        else if (randomNumber >= 8 && randomNumber < 16 && NPeWa == 1) {
+        else if (randomNumberByCase >= 8 && randomNumberByCase < 16 && NPeWa == 1) {
         var randomNumberPeWa = Math.floor(Math.random() *NoAlgsPeWa);
         document.getElementById("scramble").innerHTML = algsPeWa[randomNumberPeWa];
         }
         
-        else if (randomNumber >= 16 && randomNumber < 20 && NPiSw1 == 1) {
+        else if (randomNumberByCase >= 16 && randomNumberByCase < 20 && NPiSw1 == 1) {
         var randomNumberPiSw1 = Math.floor(Math.random() *NoAlgsPiSw1);
         document.getElementById("scramble").innerHTML = algsPiSw1[randomNumberPiSw1];
         }
         
-        else if (randomNumber >= 20 && randomNumber < 24 && NPiSw3 == 1) {
+        else if (randomNumberByCase >= 20 && randomNumberByCase < 24 && NPiSw3 == 1) {
         var randomNumberPiSw3 = Math.floor(Math.random() *NoAlgsPiSw3);
         document.getElementById("scramble").innerHTML = algsPiSw3[randomNumberPiSw3];
         }
         
-        else if (randomNumber >= 24 && randomNumber < 28 && NPiWa3 == 1) {
+        else if (randomNumberByCase >= 24 && randomNumberByCase < 28 && NPiWa3 == 1) {
         var randomNumberPiWa3 = Math.floor(Math.random() *NoAlgsPiWa3);
         document.getElementById("scramble").innerHTML = algsPiWa3[randomNumberPiWa3];
         }
         
-        else if (randomNumber >=28 && randomNumber < 32 && NPiX3 == 1) {
+        else if (randomNumberByCase >=28 && randomNumberByCase < 32 && NPiX3 == 1) {
 		var randomNumberPiX3 = Math.floor(Math.random() * NoAlgsPiX3);
 		document.getElementById("scramble").innerHTML = algsPiX3[randomNumberPiX3];
 		}
         
-        else if (randomNumber >= 32 && randomNumber < 44 && NPiU == 1) {
+        else if (randomNumberByCase >= 32 && randomNumberByCase < 44 && NPiU == 1) {
         var randomNumberPiU = Math.floor(Math.random() *NoAlgsPiU);
         document.getElementById("scramble").innerHTML = algsPiU[randomNumberPiU];
         }
         
-        else if (randomNumber >= 44 && randomNumber < 50 && NL5C == 1) {
+        else if (randomNumberByCase >= 44 && randomNumberByCase < 50 && NL5C == 1) {
         var randomNumberL5C = Math.floor(Math.random() *NoAlgsL5C);
         document.getElementById("scramble").innerHTML = algsL5C[randomNumberL5C];
         }
         
-        else if (randomNumber >= 50 && randomNumber < 56 && NOCC == 1) {
+        else if (randomNumberByCase >= 50 && randomNumberByCase < 56 && NOCC == 1) {
         var randomNumberOCC = Math.floor(Math.random() *NoAlgsOCC);
         document.getElementById("scramble").innerHTML = algsOCC[randomNumberOCC];
         }
         
-        else if (randomNumber >= 56 && randomNumber < 64 && NBC == 1) {
+        else if (randomNumberByCase >= 56 && randomNumberByCase < 64 && NBC == 1) {
         var randomNumberBC = Math.floor(Math.random() *NoAlgsBC);
         document.getElementById("scramble").innerHTML = algsBC[randomNumberBC];
         }
@@ -408,11 +444,72 @@ function generate() {
         }
         
         else {
-        generate()
+        generateByCase()
+        }
+        }
+  
+function generateBySet() {
+		var randomNumberBySet = Math.floor(Math.random() *NoTotalSets)
+        
+		if (randomNumberBySet == 0 && NPeSw == 1) {
+   		var randomNumberPeSw = Math.floor(Math.random() *NoAlgsPeSw);
+        document.getElementById("scramble").innerHTML = algsPeSw[randomNumberPeSw];
+        }
+        
+        else if (randomNumberBySet == 1 && NPeWa == 1) {
+        var randomNumberPeWa = Math.floor(Math.random() *NoAlgsPeWa);
+        document.getElementById("scramble").innerHTML = algsPeWa[randomNumberPeWa];
+        }
+        
+        else if (randomNumberBySet == 2 && NPiSw1 == 1) {
+        var randomNumberPiSw1 = Math.floor(Math.random() *NoAlgsPiSw1);
+        document.getElementById("scramble").innerHTML = algsPiSw1[randomNumberPiSw1];
+        }
+        
+        else if (randomNumberBySet == 3 && NPiSw3 == 1) {
+        var randomNumberPiSw3 = Math.floor(Math.random() *NoAlgsPiSw3);
+        document.getElementById("scramble").innerHTML = algsPiSw3[randomNumberPiSw3];
+        }
+        
+        else if (randomNumberBySet == 4 && NPiWa3 == 1) {
+        var randomNumberPiWa3 = Math.floor(Math.random() *NoAlgsPiWa3);
+        document.getElementById("scramble").innerHTML = algsPiWa3[randomNumberPiWa3];
+        }
+        
+        else if (randomNumberBySet == 5 && NPiX3 == 1) {
+		var randomNumberPiX3 = Math.floor(Math.random() * NoAlgsPiX3);
+		document.getElementById("scramble").innerHTML = algsPiX3[randomNumberPiX3];
+		}
+        
+        else if (randomNumberBySet == 6 && NPiU == 1) {
+        var randomNumberPiU = Math.floor(Math.random() *NoAlgsPiU);
+        document.getElementById("scramble").innerHTML = algsPiU[randomNumberPiU];
+        }
+        
+        else if (randomNumberBySet == 7 && NL5C == 1) {
+        var randomNumberL5C = Math.floor(Math.random() *NoAlgsL5C);
+        document.getElementById("scramble").innerHTML = algsL5C[randomNumberL5C];
+        }
+        
+        else if (randomNumberBySet == 8 && NOCC == 1) {
+        var randomNumberOCC = Math.floor(Math.random() *NoAlgsOCC);
+        document.getElementById("scramble").innerHTML = algsOCC[randomNumberOCC];
+        }
+        
+        else if (randomNumberBySet == 9 && NBC == 1) {
+        var randomNumberBC = Math.floor(Math.random() *NoAlgsBC);
+        document.getElementById("scramble").innerHTML = algsBC[randomNumberBC];
+        }
+        
+        else if (NPeSw == 0 && NPeWa == 0 && NPiSw1 == 0 && NPiSw3 == 0 && NPiWa3 == 0 && NPiX3 == 0 && NPiU == 0 && NL5C == 0 && NOCC == 0 && NBC == 0) {
+        document.getElementById("scramble").innerHTML = 'select a set';
+        }
+        
+        else {
+        generateBySet()
         }
         
         }
-  
   		
 </script>
 </html>
