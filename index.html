@@ -209,11 +209,23 @@
                 timertrue = 0;
                 } 
             }
+            if (event.keyCode == 39) {
+                if(typeSwitch == 0) {
+                    generateByCase();
+                } else if(typeSwitch == 1) {
+                    generateBySet();
+                }
+            }
+            if (event.keyCode == 37) {
+                previousScramble();
+            }
         } 
     };
     
+    
+    
+    
 var typeSwitch = 0
-
 function switchType(){
 if (typeSwitch == 0) {
 typeSwitch = 1
@@ -227,6 +239,7 @@ document.getElementById("switchScrambleType").setAttribute('value', 'Generate by
     
 var NoTotalAlgs = 64;    
 var NoTotalSets = 10; 
+var lastScramble;
    
 var algsPeSw = ['R L U L\' U L\' R\' L R', 'R\' L\' R L U\' L U\' L\' R\'', 'L U\' L B U R\' B\' L\'', 'L B R U\' B\' L\' U L\'', 'L\' B\' U\' R B L R\' L', 'L\' R L\' B\' R\' U B L', 'R\' L\' B R\' L U\' B\' R L\'', 'L R\' B U L\' R B\' L R'];
 var NoAlgsPeSw = 8; 
@@ -385,8 +398,8 @@ document.getElementById("checkBC").setAttribute('class', 'checkboxTrue')
 document.getElementById("checkBC").setAttribute('class', 'checkboxFalse')
 }
 }
-
 function generateByCase() {
+		lastScramble = document.getElementById("scramble").innerHTML
 		var randomNumberByCase = Math.floor(Math.random() *NoTotalAlgs)
         
 		if (randomNumberByCase < 8 && NPeSw == 1) {
@@ -449,6 +462,7 @@ function generateByCase() {
         }
   
 function generateBySet() {
+		lastScramble = document.getElementById("scramble").innerHTML;
 		var randomNumberBySet = Math.floor(Math.random() *NoTotalSets)
         
 		if (randomNumberBySet == 0 && NPeSw == 1) {
@@ -510,6 +524,10 @@ function generateBySet() {
         }
         
         }
+        
+function previousScramble() {
+document.getElementById("scramble").innerHTML = lastScramble
+}
   		
 </script>
 </html>
